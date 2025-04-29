@@ -1,22 +1,117 @@
-html {
-  font-size: 14px;
+:root {
+    --background-color: #F4F0D9;
+    --text-color: #A6B37D;
+    --primary-color: #B99470;
+    --primary-hover-color: #966d54;
+    --primary-border-color: #A6B37D;
+    --secondary-color: #FEFAE0;
+    --secondary-hover-color: #C0C78C;
+    --error-color: #B99470;
+    --valid-color: #C0C78C;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --hover-shadow-color: rgba(0, 0, 0, 0.2);
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+/* Global Styles */
+html, body {
+    font-family: 'Hack Nerd Font', monospace;
+    background-color: var(--background-color); /* Use background color from root */
+    color: var(--text-color); /* Use text color from root */
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+/* Navbar Styles */
+.nav {
+    background-color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-border-color);
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+.nav .nav-link {
+    color: var(--secondary-color);
 }
 
-body {
-  margin-bottom: 60px;
+.nav .nav-link:hover {
+    color: var(--secondary-hover-color);
+}
+
+.nav .navbar-brand {
+    color: var(--secondary-color);
+}
+
+.nav .navbar-brand:hover {
+    color: var(--secondary-hover-color);
+}
+
+/* Song Gallery */
+.song-gallery {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: space-around;
+}
+
+.gallery-item {
+    background-color: var(--secondary-color);
+    padding: 16px;
+    border: 2px solid var(--primary-border-color);
+    width: calc(33.333% - 32px);
+    box-sizing: border-box;
+    box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+.gallery-item h4 {
+    color: var(--primary-color);
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.album-cover {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 10px;
+    border: 1px solid var(--primary-border-color);
+}
+
+/* Song Card */
+.genre-card {
+    background-color: var(--background-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    width: 250px;
+    height: 250px;
+    margin: 15px;
+    padding: 15px;
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.genre-card:hover {
+    transform: scale(1.10);
+    box-shadow: 0 8px 16px var(--hover-shadow-color);
+}
+
+.genre-card h4 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.genre-details p {
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+/* Footer Styles */
+.site-footer {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    text-align: center;
+    border-top: 2px solid var(--primary-border-color);
+    font-family: 'Hack Nerd Font', monospace;
 }

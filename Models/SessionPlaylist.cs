@@ -1,10 +1,7 @@
 namespace MPAJukebox.Models;
 
-public class Playlist
+public class SessionPlaylist
 {
-    public int Id { get; set; }
     public string Name { get; set; }
-    public int UserId { get; set; }
-    public User User { get; set; }
-    public ICollection<PlaylistSong> PlaylistSongs { get; set; }
+    public List<Song> Songs { get; set; } = new List<Song>();
 }
