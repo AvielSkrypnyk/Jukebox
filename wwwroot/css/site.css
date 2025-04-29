@@ -20,24 +20,24 @@ html, body {
 }
 
 /* Navbar Styles */
-.nav {
+.navbar {
     background-color: var(--primary-color);
     border-bottom: 2px solid var(--primary-border-color);
 }
 
-.nav .nav-link {
+.navbar .nav-link {
     color: var(--secondary-color);
 }
 
-.nav .nav-link:hover {
+.navbar .nav-link:hover {
     color: var(--secondary-hover-color);
 }
 
-.nav .navbar-brand {
+.navbar .navbar-brand {
     color: var(--secondary-color);
 }
 
-.nav .navbar-brand:hover {
+.navbar .navbar-brand:hover {
     color: var(--secondary-hover-color);
 }
 
@@ -89,6 +89,7 @@ html, body {
     justify-content: center;
     align-items: center;
     text-align: center;
+    cursor: pointer;
 }
 
 .genre-card:hover {
