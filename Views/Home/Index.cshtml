@@ -6,11 +6,13 @@
         @foreach (var genre in Model.Genres)
         {
         <div class="col-md-3 mb-4">
-            <div class="genre-card">
-                <div class="genre-details">
-                    <h5>@genre.Name</h5>
+            <a asp-controller="Genre" asp-action="SongsByGenre" asp-route-id="@genre.Id" class="text-decoration-none">
+                <div class="genre-card">
+                    <div class="genre-details">
+                        <h5>@genre.Name</h5>
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
         }
     </div>
@@ -25,6 +27,7 @@
             <th>Artist</th>
             <th>Genre</th>
             <th>Duration</th>
+            <th>More</th>
         </tr>
         </thead>
         <tbody>
@@ -35,6 +38,7 @@
             <td>@song.Artist</td>
             <td>@song.Genre.Name</td>
             <td>@song.Duration</td>
+            <td><button class="song-button-more">•••</button></td>
         </tr>
         }
         </tbody>

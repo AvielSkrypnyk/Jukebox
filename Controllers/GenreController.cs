@@ -12,7 +12,16 @@ public class GenreController : Controller
     {
         _context = context;
     }
+    public async Task<IActionResult> SongsByGenre(int id)
+    {
+        var songs = await _context.Songs
+            .Include(s => s.Genre)
+            .Where(s => s.GenreId == id)
+            .ToListAsync();
 
+        return View(songs);
+    }
+    
     public async Task<IActionResult> Index()
     {
         var genres = await _context.Genres.ToListAsync();

@@ -41,6 +41,17 @@ html, body {
     color: var(--secondary-hover-color);
 }
 
+.nav-item {
+    margin: 0 5px;
+    color: var(--secondary-color);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.nav-item:hover {
+    transform: scale(1.10);
+    color: var(--secondary-hover-color);
+}
+
 /* Song Gallery */
 .song-gallery {
     padding: 20px;
@@ -63,6 +74,20 @@ html, body {
     color: var(--primary-color);
     margin: 0;
     font-size: 1.25rem;
+}
+
+.song-button-more {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.song-button-more:hover {
+    background-color: var(--primary-hover-color);
+    transform: scale(1.10);
+    box-shadow: 0 4px 8px var(--hover-shadow-color);
 }
 
 .album-cover {
@@ -97,15 +122,9 @@ html, body {
     box-shadow: 0 8px 16px var(--hover-shadow-color);
 }
 
-.genre-card h4 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
+.genre-card h5 {
+    font-size: 1.75rem;
     color: var(--primary-color);
-}
-
-.genre-details p {
-    font-size: 0.9rem;
-    color: var(--text-color);
 }
 
 /* Footer Styles */

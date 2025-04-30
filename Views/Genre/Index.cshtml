@@ -1,16 +1,19 @@
 @model IEnumerable<MPAJukebox.Models.Genre>
 
 <div class="container mt-4">
+    <h2>All Genres</h2>
     <div class="row">
         @foreach (var genre in Model)
         {
-        <div class="col-md-3 mb-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">@genre.Name</h5>
-                </div>
+            <div class="col-md-3 mb-4">
+                <a asp-controller="Genre" asp-action="SongsByGenre" asp-route-id="@genre.Id" class="text-decoration-none">
+                    <div class="genre-card">
+                        <div class="genre-details">
+                            <h5>@genre.Name</h5>
+                        </div>
+                    </div>
+                </a>
             </div>
-        </div>
         }
     </div>
 </div>

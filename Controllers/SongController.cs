@@ -15,6 +15,9 @@ public class SongController : Controller
         _context = context;
     }
 
+    
+    [HttpGet]
+    [Route("Song/IndexByGenre/{genreId}")]
     public async Task<IActionResult> Index(int genreId)
     {
         var songs = await _context.Songs.Include(s => s.Genre)
@@ -45,5 +48,13 @@ public class SongController : Controller
             HttpContext.Session.SetObjectAsJson("Playlist", playlist);
         }
         return RedirectToAction("Index", "Playlist");
+    }
+
+    [HttpGet]
+    [Route("Song/Index")]
+    public async Task<IActionResult> Index()
+    {
+        var songs = await _context.Songs.Include(s => s.Genre).ToListAsync();
+        return View(songs);
     }
 }

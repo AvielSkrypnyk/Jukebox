@@ -1,13 +1,12 @@
 @model IEnumerable<MPAJukebox.Models.Song>
 
 <div class="container mt-4">
-    <h2>All Songs</h2>
+    <h2>Songs in @Model.FirstOrDefault()?.Genre.Name</h2>
     <table class="table">
         <thead>
         <tr>
             <th>Title</th>
             <th>Artist</th>
-            <th>Genre</th>
             <th>Duration</th>
             <th>More</th>
         </tr>
@@ -18,7 +17,6 @@
             <tr>
                 <td>@song.Title</td>
                 <td>@song.Artist</td>
-                <td>@song.Genre.Name</td>
                 <td>@song.Duration</td>
                 <td><button class="song-button-more">•••</button></td>
             </tr>
