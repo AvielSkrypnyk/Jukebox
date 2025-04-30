@@ -38,7 +38,25 @@
             <td>@song.Artist</td>
             <td>@song.Genre.Name</td>
             <td>@song.Duration</td>
-            <td><button class="song-button-more">•••</button></td>
+            <td>
+                <div class="dropdown">
+                    <button class="song-button-more" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        •••
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item" asp-controller="Song" asp-action="AddToPlaylist" asp-route-id="@song.Id">
+                                Add to Playlist
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" asp-controller="Song" asp-action="Details" asp-route-id="@song.Id">
+                                View Details
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </td>
         </tr>
         }
         </tbody>

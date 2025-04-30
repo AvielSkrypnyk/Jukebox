@@ -1,19 +1,13 @@
-@page
-@model MPAJukebox.Views.Song.Details
+@model MPAJukebox.Models.Song
 
-@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-<div>
-    
+<div class="container mt-4">
+    <h2>Song Details</h2>
+    <div class="song-gallery">
+        <div class="gallery-item">
+            <h4>@Model.Title</h4>
+            <p><strong>Artist:</strong> @Model.Artist</p>
+            <p><strong>Genre:</strong> @Model.Genre.Name</p>
+            <p><strong>Duration:</strong> @Model.Duration</p>
+        </div>
+    </div>
 </div>
-</body>
-</html>
