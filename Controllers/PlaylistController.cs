@@ -20,13 +20,6 @@ public class PlaylistController : Controller
         return View(playlist);
     }
 
-    [HttpPost]
-    public IActionResult Save(string playlistName)
-    {
-        _playlistService.SavePlaylist(playlistName);
-        return RedirectToAction("Index");
-    }
-
     public IActionResult Clear()
     {
         _playlistService.ClearPlaylist();
