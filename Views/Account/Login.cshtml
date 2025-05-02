@@ -1,19 +1,32 @@
 @page
 @model MPAJukebox.Views.Account.Login
 
-@{
-    Layout = null;
-}
-
 <!DOCTYPE html>
-
 <html>
 <head>
-    <title></title>
+    <title>Login</title>
 </head>
 <body>
-<div>
-    
+<div class="container mt-5">
+    <div class="form-container">
+        <h2 class="text-center">Login</h2>
+        <form method="post" asp-action="Login">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="Email" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="Password" class="form-control" required />
+            </div>
+            <div class="form-group text-center mt-4">
+                <button type="submit" class="button-clear">Login</button>
+            </div>
+        </form>
+        <p class="text-center mt-3">
+            Don't have an account? <a asp-controller="Account" asp-action="Register" class="text-decoration-none">Register</a>
+        </p>
+    </div>
 </div>
 </body>
 </html>

@@ -180,6 +180,33 @@ html, body {
     box-shadow: 0 4px 8px var(--hover-shadow-color);
 }
 
+.form-container {
+    background-color: var(--background-color);
+    border-radius: 8px;
+    box-shadow: 0 8px 16px var(--shadow-color);
+    padding: 30px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--primary-border-color);
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-hover-color);
+    box-shadow: 0 0 5px var(--hover-shadow-color);
+}
+
 /* Footer Styles */
 .site-footer {
     background-color: var(--primary-color);
