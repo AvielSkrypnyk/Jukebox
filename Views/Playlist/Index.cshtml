@@ -1,19 +1,65 @@
-@page
-@model MPAJukebox.Views.Playlist.Index
+@model MPAJukebox.Models.SessionPlaylist
 
 @{
-    Layout = null;
+    ViewData["Title"] = "My Playlist";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
+<h1>Your Playlist</h1>
 
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-<div>
+@if (Model?.Songs != null && Model.Songs.Any())
+{
+    <div class="container mt-4">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Artist</th>
+                <th>Genre</th>
+                <th>Duration</th>
+                <th>More</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var song in Model.Songs)
+            {
+                <tr>
+                    <td>@song.Title</td>
+                    <td>@song.Artist</td>
+                    <td>@song.Genre.Name</td>
+                    <td>@song.Duration</td>
+                    <td>
+                        <div class="dropdown">
+                            <button class="song-button-more" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                •••
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" asp-controller="Song" asp-action="Details" asp-route-id="@song.Id">
+                                        View Details
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" asp-controller="Song" asp-action="RemoveFromPlaylist" asp-route-id="@song.Id">
+                                        Remove from Playlist
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+        <form method="post" asp-controller="Song" asp-action="ClearPlaylist">
+            <button class="button-clear">Clear the playlist</button>
+        </form>
+    </div>
     
-</div>
-</body>
-</html>
+}
+else
+{
+    <div class="container m-4 text-center">
+        <h3>You have no music to playlist added.</h3>
+    </div>
+}

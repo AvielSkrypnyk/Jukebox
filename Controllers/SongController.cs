@@ -9,10 +9,12 @@ namespace MPAJukebox.Controllers;
 public class SongController : Controller
 {
     private readonly ApplicationDbContext _context;
+    private readonly PlaylistService _playlistService;
 
-    public SongController(ApplicationDbContext context)
+    public SongController(ApplicationDbContext context, IHttpContextAccessor httpContextAccessor)
     {
         _context = context;
+        _playlistService = new PlaylistService(httpContextAccessor.HttpContext.Session);
     }
 
     
@@ -39,14 +41,27 @@ public class SongController : Controller
 
     public IActionResult AddToPlaylist(int id)
     {
-        var playlist = HttpContext.Session.GetObjectFromJson<SessionPlaylist>("Playlist") ?? new SessionPlaylist();
-
+        var song = _context.Songs.Include(s => s.Genre).FirstOrDefault(s => s.Id == id);
+        if (song != null)
+        {
+            _playlistService.AddSongToPlayList(song);
+        }
+        return RedirectToAction("Index", "Playlist");
+    }
+    
+    public IActionResult RemoveFromPlaylist(int id)
+    {
         var song = _context.Songs.Find(id);
         if (song != null)
         {
-            playlist.Songs.Add(song);
-            HttpContext.Session.SetObjectAsJson("Playlist", playlist);
+            _playlistService.RemoveSongFromPlayList(song);
         }
+        return RedirectToAction("Index", "Playlist");
+    }
+    
+    public IActionResult ClearPlaylist()
+    {
+        _playlistService.ClearPlaylist();
         return RedirectToAction("Index", "Playlist");
     }
 
