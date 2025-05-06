@@ -7,7 +7,7 @@
             <h4>@Model.Title</h4>
             <p><strong>Artist:</strong> @Model.Artist</p>
             <p><strong>Genre:</strong> @Model.Genre.Name</p>
-            <p><strong>Duration:</strong> @Model.Duration</p>
+            <p><strong>Duration:</strong> @TimeSpan.FromMinutes(Model.Duration).ToString(@"mm\:ss")</p>
         </div>
     </div>
 </div>

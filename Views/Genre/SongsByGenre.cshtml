@@ -17,7 +17,7 @@
             <tr>
                 <td>@song.Title</td>
                 <td>@song.Artist</td>
-                <td>@song.Duration</td>
+                <td>@TimeSpan.FromMinutes(song.Duration).ToString(@"mm\:ss")</td>
                 <td>
                     <div class="dropdown">
                         <button class="song-button-more" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">

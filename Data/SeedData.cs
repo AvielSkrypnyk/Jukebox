@@ -37,22 +37,22 @@ public static class SeedData
             // --- Seed Songs ---
             var songs = new[]
             {
-                new { Title = "Bohemian Rhapsody", Artist = "Queen", Duration = "5:55", Genre = "Rock" },
-                new { Title = "Stairway to Heaven", Artist = "Led Zeppelin", Duration = "8:02", Genre = "Rock" },
-                new { Title = "Billie Jean", Artist = "Michael Jackson", Duration = "4:53", Genre = "Pop" },
-                new { Title = "Shape of You", Artist = "Ed Sheeran", Duration = "3:53", Genre = "Pop" },
-                new { Title = "So What", Artist = "Miles Davis", Duration = "9:22", Genre = "Jazz" },
-                new { Title = "Take Five", Artist = "Dave Brubeck", Duration = "5:24", Genre = "Jazz" },
-                new { Title = "Symphony No. 5", Artist = "Ludwig van Beethoven", Duration = "7:06", Genre = "Classical" },
-                new { Title = "Clair de Lune", Artist = "Claude Debussy", Duration = "5:10", Genre = "Classical" },
-                new { Title = "Lose Yourself", Artist = "Eminem", Duration = "5:26", Genre = "Hip-Hop" },
-                new { Title = "Juicy", Artist = "The Notorious B.I.G.", Duration = "5:02", Genre = "Hip-Hop" },
-                new { Title = "Jolene", Artist = "Dolly Parton", Duration = "2:42", Genre = "Country" },
-                new { Title = "Take Me Home, Country Roads", Artist = "John Denver", Duration = "3:10", Genre = "Country" },
-                new { Title = "Strobe", Artist = "Deadmau5", Duration = "10:37", Genre = "Electronic" },
-                new { Title = "Animals", Artist = "Martin Garrix", Duration = "5:03", Genre = "Electronic" },
-                new { Title = "No Woman, No Cry", Artist = "Bob Marley", Duration = "7:08", Genre = "Reggae" },
-                new { Title = "Redemption Song", Artist = "Bob Marley", Duration = "3:47", Genre = "Reggae" }
+                new { Title = "Bohemian Rhapsody", Artist = "Queen", Duration = 5.55, Genre = "Rock" },
+                new { Title = "Stairway to Heaven", Artist = "Led Zeppelin", Duration = 8.02, Genre = "Rock" },
+                new { Title = "Billie Jean", Artist = "Michael Jackson", Duration = 4.53, Genre = "Pop" },
+                new { Title = "Shape of You", Artist = "Ed Sheeran", Duration = 3.53, Genre = "Pop" },
+                new { Title = "So What", Artist = "Miles Davis", Duration = 9.22, Genre = "Jazz" },
+                new { Title = "Take Five", Artist = "Dave Brubeck", Duration = 5.24, Genre = "Jazz" },
+                new { Title = "Symphony No. 5", Artist = "Ludwig van Beethoven", Duration = 7.06, Genre = "Classical" },
+                new { Title = "Clair de Lune", Artist = "Claude Debussy", Duration = 5.10, Genre = "Classical" },
+                new { Title = "Lose Yourself", Artist = "Eminem", Duration = 5.26, Genre = "Hip-Hop" },
+                new { Title = "Juicy", Artist = "The Notorious B.I.G.", Duration = 5.02, Genre = "Hip-Hop" },
+                new { Title = "Jolene", Artist = "Dolly Parton", Duration = 2.42, Genre = "Country" },
+                new { Title = "Take Me Home, Country Roads", Artist = "John Denver", Duration = 3.10, Genre = "Country" },
+                new { Title = "Strobe", Artist = "Deadmau5", Duration = 10.37, Genre = "Electronic" },
+                new { Title = "Animals", Artist = "Martin Garrix", Duration = 5.03, Genre = "Electronic" },
+                new { Title = "No Woman, No Cry", Artist = "Bob Marley", Duration = 7.08, Genre = "Reggae" },
+                new { Title = "Redemption Song", Artist = "Bob Marley", Duration = 3.47, Genre = "Reggae" }
             };
 
             foreach (var song in songs)

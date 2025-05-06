@@ -43,9 +43,8 @@ namespace MPAJukebox.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Duration")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                    b.Property<double>("Duration")
+                        .HasColumnType("double");
 
                     b.Property<int>("GenreId")
                         .HasColumnType("int");

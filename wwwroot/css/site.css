@@ -194,6 +194,11 @@ html, body {
     box-shadow: 0 4px 8px var(--hover-shadow-color);
 }
 
+.total-duration-text {
+    font-size: 1.5rem;
+    color: var(--text-color);
+}
+
 .form-container {
     background-color: var(--background-color);
     border-radius: 8px;
