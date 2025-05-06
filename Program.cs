@@ -30,6 +30,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseSession();
+app.UseAuthentication();
 app.UseAuthorization();
 
 // Use default route: Home/Index

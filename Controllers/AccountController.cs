@@ -37,15 +37,16 @@ public class AccountController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> Login(string username, string password)
+    public async Task<IActionResult> Login(string email, string password)
     {
-        var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == username && u.Password == password);
+        var user = await _context.Users.FirstOrDefaultAsync(u => u.Password == password && u.Email == email);
         if (user != null)
         {
             HttpContext.Session.SetInt32("UserId", user.Id);
-            return RedirectToAction("Index", "Genre");
+            HttpContext.Session.SetString("Username", user.Username);
+            return RedirectToAction("Index", "Home");
         }
-        ModelState.AddModelError("", "Invalid username or password");
+        ModelState.AddModelError("", "Invalid email or password");
         return View();
     }
 

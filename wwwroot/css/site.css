@@ -108,6 +108,20 @@ html, body {
     box-shadow: 0 4px 8px var(--hover-shadow-color);
 }
 
+.account-button {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.account-button:hover {
+    background-color: var(--primary-hover-color);
+    transform: scale(1.10);
+    box-shadow: 0 4px 8px var(--hover-shadow-color);
+}
+
 .dropdown-menu {
     background-color: var(--primary-color);
     border: 2px solid var(--primary-border-color);
