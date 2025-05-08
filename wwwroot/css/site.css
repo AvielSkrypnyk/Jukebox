@@ -151,6 +151,67 @@ html, body {
     border: 1px solid var(--primary-border-color);
 }
 
+/* Rename Playlist Button */
+.rename-playlist-button {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.rename-playlist-button:hover {
+    background-color: var(--primary-hover-color);
+    transform: scale(1.10);
+    box-shadow: 0 4px 8px var(--hover-shadow-color);
+}
+
+/* Rename Playlist Modal */
+#renamePlaylistModal .modal-content {
+    background-color: var(--background-color);
+    border-radius: 8px;
+    box-shadow: 0 8px 16px var(--shadow-color);
+}
+
+#renamePlaylistModal .modal-header {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border-bottom: 2px solid var(--primary-border-color);
+}
+
+#renamePlaylistModal .modal-title {
+    font-size: 1.5rem;
+}
+
+#renamePlaylistModal .btn-close {
+    color: var(--secondary-color);
+}
+
+#renamePlaylistModal .form-label {
+    color: var(--text-color);
+}
+
+#renamePlaylistModal .form-control {
+    border: 1px solid var(--primary-border-color);
+    border-radius: 5px;
+}
+
+#renamePlaylistModal .form-control:focus {
+    border-color: var(--primary-hover-color);
+    box-shadow: 0 0 5px var(--hover-shadow-color);
+}
+
+#renamePlaylistModal .btn-primary {
+    background-color: var(--primary-color);
+    border: none;
+}
+
+#renamePlaylistModal .btn-primary:hover {
+    background-color: var(--primary-hover-color);
+}
+
 /* Song Card */
 .genre-card {
     background-color: var(--background-color);

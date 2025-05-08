@@ -35,4 +35,11 @@ public class PlaylistService
     {
         _session.Remove(PlaylistKey);
     }
+
+    public void RenamePlaylist(string newName)
+    {
+        var playlist = GetPlaylist();
+        playlist.Name = newName;
+        _session.SetObjectAsJson(PlaylistKey, playlist);
+    }
 }

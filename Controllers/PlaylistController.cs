@@ -25,4 +25,10 @@ public class PlaylistController : Controller
         _playlistService.ClearPlaylist();
         return RedirectToAction("Index");
     }
+    
+    public IActionResult RenamePlaylist(string newName)
+    {
+        _playlistService.RenamePlaylist(newName);
+        return RedirectToAction("Index");
+    }
 }
