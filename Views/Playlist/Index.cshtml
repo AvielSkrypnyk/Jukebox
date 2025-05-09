@@ -1,10 +1,5 @@
 @model MPAJukebox.Models.SessionPlaylist
 
-@{
-    ViewData["Title"] = "@Model.Name Playlist";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
 @if (@Model.Name != null)
 {
     var playlistName = @Model.Name;

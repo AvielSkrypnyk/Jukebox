@@ -8,10 +8,12 @@ namespace MPAJukebox.Controllers;
 public class PlaylistController : Controller
 {
     private readonly PlaylistService _playlistService;
+    private readonly ApplicationDbContext _context;
     
-    public PlaylistController(IHttpContextAccessor httpContextAccessor)
+    public PlaylistController(IHttpContextAccessor httpContextAccessor, ApplicationDbContext context)
     {
-        _playlistService = new PlaylistService(httpContextAccessor.HttpContext.Session);
+        _context = context;
+        _playlistService = new PlaylistService(httpContextAccessor.HttpContext.Session, context);
     }
     
     public IActionResult Index()
@@ -29,6 +31,16 @@ public class PlaylistController : Controller
     public IActionResult RenamePlaylist(string newName)
     {
         _playlistService.RenamePlaylist(newName);
+        return RedirectToAction("Index");
+    }
+    
+    public IActionResult SavePlaylist()
+    {
+        var userId = HttpContext.Session.GetInt32("UserId");
+        if (userId.HasValue)
+        {
+            _playlistService.SavePlaylistToDatabase(userId.Value);
+        }
         return RedirectToAction("Index");
     }
 }
