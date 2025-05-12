@@ -1,8 +1,13 @@
 @model MPAJukebox.Models.SessionPlaylist
+@inject IHttpContextAccessor HttpContextAccessor
 
-@if (@Model.Name != null)
+@{
+    var playlistName = "Playlist";
+}
+
+@if (Model?.Name != null)
 {
-    var playlistName = @Model.Name;
+    playlistName = Model.Name;
     <div class="container mt-4 d-flex justify-content-between align-items-center">
         <h2>@playlistName Playlist</h2>
         <button asp-action="RenamePlaylist" data-bs-toggle="modal" data-bs-target="#renamePlaylistModal" class="rename-playlist-button">Change name of Playlist</button>
@@ -10,7 +15,6 @@
 }
 else
 {
-    var playlistName = "Playlist";
     <div class="container mt-4 d-flex justify-content-between align-items-center">
         <h2>Session @playlistName</h2>
         <button asp-action="RenamePlaylist" data-bs-toggle="modal" data-bs-target="#renamePlaylistModal" class="rename-playlist-button">Change name of Playlist</button>
@@ -95,6 +99,15 @@ else
             </div>
         </form>
     </div>
+    @if (HttpContextAccessor.HttpContext.Session.GetInt32("UserId") != null)
+    {
+        <div class="container mt-4">
+            <form method="post" asp-controller="Playlist" asp-action="SavePlaylist">
+                <input type="hidden" name="playlistName" value="@playlistName" />
+                <button class="button-clear">Save Playlist</button>
+            </form>
+        </div>
+    }
 }
 else
 {

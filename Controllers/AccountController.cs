@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MPAJukebox.Data;
+using MPAJukebox.Extensions;
 using MPAJukebox.Models;
 
 namespace MPAJukebox.Controllers;
@@ -44,6 +45,20 @@ public class AccountController : Controller
         {
             HttpContext.Session.SetInt32("UserId", user.Id);
             HttpContext.Session.SetString("Username", user.Username);
+
+            // Load the user's playlist into the session
+            var playlist = await _context.Playlists.Include(p => p.Songs)
+                .FirstOrDefaultAsync(p => p.UserId == user.Id);
+            if (playlist != null)
+            {
+                var sessionPlaylist = new SessionPlaylist
+                {
+                    Name = playlist.Name,
+                    Songs = playlist.Songs
+                };
+                HttpContext.Session.SetObjectAsJson("Playlist", sessionPlaylist);
+            }
+
             return RedirectToAction("Index", "Home");
         }
         ModelState.AddModelError("", "Invalid email or password");

@@ -55,7 +55,7 @@ public class PlaylistService
             var existingPlaylist = _context.Playlists.FirstOrDefault(p => p.UserId == userId);
             if (existingPlaylist != null)
             {
-                // Update the existing playlist
+                // Overwrite the existing playlist
                 existingPlaylist.Name = sessionPlaylist.Name ?? "Untitled Playlist";
                 existingPlaylist.Songs = sessionPlaylist.Songs;
             }

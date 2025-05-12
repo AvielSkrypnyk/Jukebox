@@ -3,5 +3,5 @@ namespace MPAJukebox.Models;
 public class SessionPlaylist
 {
     public string Name { get; set; }
-    public List<Song> Songs { get; set; } = new List<Song>();
+    public List<Song> Songs { get; set; } = new();
 }
