@@ -23,14 +23,22 @@ public class PlaylistService
     public void AddSongToPlayList(Song song)
     {
         var playlist = GetPlaylist();
-        playlist.Songs.Add(song);
+        var songDto = new SongDto()
+        {
+            Id = song.Id,
+            Title = song.Title,
+            Artist = song.Artist,
+            Duration = song.Duration,
+            Genre = song.Genre.Name
+        };
+        playlist.Songs.Add(songDto);
         _session.SetObjectAsJson(PlaylistKey, playlist);
     }
     
-    public void RemoveSongFromPlayList(Song song)
+    public void RemoveSongFromPlayList(int id)
     {
         var playlist = GetPlaylist();
-        playlist.Songs.RemoveAll(s => s.Id == song.Id);
+        playlist.Songs.RemoveAll(s => s.Id == id);
         _session.SetObjectAsJson(PlaylistKey, playlist);
     }
     
@@ -57,7 +65,10 @@ public class PlaylistService
             {
                 // Overwrite the existing playlist
                 existingPlaylist.Name = sessionPlaylist.Name ?? "Untitled Playlist";
-                existingPlaylist.Songs = sessionPlaylist.Songs;
+                existingPlaylist.Songs = sessionPlaylist.Songs
+                    .Select(dto => _context.Songs.Find(dto.Id))
+                    .Where(song => song != null)
+                    .ToList();
             }
             else
             {
@@ -67,6 +78,9 @@ public class PlaylistService
                     Name = sessionPlaylist.Name ?? "Untitled Playlist",
                     UserId = userId,
                     Songs = sessionPlaylist.Songs
+                        .Select(dto => _context.Songs.Find(dto.Id))
+                        .Where(song => song != null)
+                        .ToList()
                 };
                 _context.Playlists.Add(playlist);
             }

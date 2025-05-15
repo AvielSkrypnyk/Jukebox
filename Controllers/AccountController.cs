@@ -48,17 +48,24 @@ public class AccountController : Controller
 
             // Load the user's playlist into the session
             var playlist = await _context.Playlists.Include(p => p.Songs)
+                .ThenInclude(s => s.Genre)
                 .FirstOrDefaultAsync(p => p.UserId == user.Id);
             if (playlist != null)
             {
                 var sessionPlaylist = new SessionPlaylist
                 {
                     Name = playlist.Name,
-                    Songs = playlist.Songs
+                    Songs = playlist.Songs.Select(song => new SongDto()
+                    {
+                        Id = song.Id,
+                        Title = song.Title,
+                        Artist = song.Artist,
+                        Duration = song.Duration,
+                        Genre = song.Genre.Name
+                    }).ToList()
                 };
                 HttpContext.Session.SetObjectAsJson("Playlist", sessionPlaylist);
             }
-
             return RedirectToAction("Index", "Home");
         }
         ModelState.AddModelError("", "Invalid email or password");

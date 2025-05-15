@@ -51,11 +51,7 @@ public class SongController : Controller
     
     public IActionResult RemoveFromPlaylist(int id)
     {
-        var song = _context.Songs.Find(id);
-        if (song != null)
-        {
-            _playlistService.RemoveSongFromPlayList(song);
-        }
+        _playlistService.RemoveSongFromPlayList(id);
         return RedirectToAction("Index", "Playlist");
     }
     
