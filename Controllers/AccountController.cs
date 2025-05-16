@@ -55,14 +55,7 @@ public class AccountController : Controller
                 var sessionPlaylist = new SessionPlaylist
                 {
                     Name = playlist.Name,
-                    Songs = playlist.Songs.Select(song => new SongDto()
-                    {
-                        Id = song.Id,
-                        Title = song.Title,
-                        Artist = song.Artist,
-                        Duration = song.Duration,
-                        Genre = song.Genre.Name
-                    }).ToList()
+                    Songs = playlist.Songs.ToList()
                 };
                 HttpContext.Session.SetObjectAsJson("Playlist", sessionPlaylist);
             }

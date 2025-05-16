@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using MPAJukebox.Data;
 using MPAJukebox.Extensions;
 
@@ -23,15 +24,7 @@ public class PlaylistService
     public void AddSongToPlayList(Song song)
     {
         var playlist = GetPlaylist();
-        var songDto = new SongDto()
-        {
-            Id = song.Id,
-            Title = song.Title,
-            Artist = song.Artist,
-            Duration = song.Duration,
-            Genre = song.Genre.Name
-        };
-        playlist.Songs.Add(songDto);
+        playlist.Songs.Add(song);
         _session.SetObjectAsJson(PlaylistKey, playlist);
     }
     
@@ -60,15 +53,15 @@ public class PlaylistService
         if (sessionPlaylist.Songs.Any())
         {
             // Check if the user already has a playlist in the database
-            var existingPlaylist = _context.Playlists.FirstOrDefault(p => p.UserId == userId);
+            var existingPlaylist = _context.Playlists.Include(x => x.Songs).FirstOrDefault(p => p.UserId == userId);
             if (existingPlaylist != null)
             {
                 // Overwrite the existing playlist
                 existingPlaylist.Name = sessionPlaylist.Name ?? "Untitled Playlist";
                 existingPlaylist.Songs = sessionPlaylist.Songs
                     .Select(dto => _context.Songs.Find(dto.Id))
-                    .Where(song => song != null)
-                    .ToList();
+                    .Where(song => song != null).ToList();
+                _context.Playlists.Update(existingPlaylist);
             }
             else
             {
