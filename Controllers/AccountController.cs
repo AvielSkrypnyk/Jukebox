@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using MPAJukebox.Data;
 using MPAJukebox.Extensions;
@@ -25,6 +26,13 @@ public class AccountController : Controller
     {
         if (ModelState.IsValid)
         {
+            var existingUser = await _context.Users.FirstOrDefaultAsync(u => u.Email == user.Email);
+            if (existingUser != null)
+            {
+                ModelState.AddModelError("Email", "Email already in use by another user");
+                return View(user);
+            }
+            
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
             return RedirectToAction("Login");

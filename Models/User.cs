@@ -1,7 +1,9 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 
 namespace MPAJukebox.Models;
 
+[Index(nameof(Email), IsUnique = true)]
 public class User
 {
     [Key]
