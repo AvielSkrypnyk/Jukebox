@@ -16,7 +16,7 @@ public class GenreController : Controller
     {
         var songs = await _context.Songs
             .Include(s => s.Genre)
-            .Where(s => s.GenreId == id)
+            .Where(s => s.Genre.Id == id)
             .ToListAsync();
 
         return View(songs);

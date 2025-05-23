@@ -23,7 +23,7 @@ public class SongController : Controller
     public async Task<IActionResult> Index(int genreId)
     {
         var songs = await _context.Songs.Include(s => s.Genre)
-            .Where(s => s.GenreId == genreId)
+            .Where(s => s.Genre.Id == genreId)
             .ToListAsync();
         return View(songs);
     }
@@ -41,12 +41,16 @@ public class SongController : Controller
 
     public IActionResult AddToPlaylist(int id)
     {
+        var playlist = _playlistService.GetPlaylist();
         var song = _context.Songs.Include(s => s.Genre).FirstOrDefault(s => s.Id == id);
-        if (song != null)
+        if (song != null && !playlist.Songs.Any(s => s.Id == song.Id))
         {
             _playlistService.AddSongToPlayList(song);
+            return RedirectToAction("Index", "Playlist");
         }
-        return RedirectToAction("Index", "Playlist");
+
+        TempData["Error"] = "Song already exists in the playlist";
+        return RedirectToAction("Index", "Home");
     }
     
     public IActionResult RemoveFromPlaylist(int id)

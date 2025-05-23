@@ -21,7 +21,7 @@ public class PlaylistController : Controller
         var playlist = _playlistService.GetPlaylist();
         return View(playlist);
     }
-
+    
     public IActionResult Clear()
     {
         _playlistService.ClearPlaylist();

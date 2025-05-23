@@ -1,19 +1,20 @@
 ﻿@model MPAJukebox.Models.HomeViewModel
 
 <div class="container mt-4">
+    <p class="text-danger">@TempData["Error"]</p>
     <h2>Top Genres</h2>
     <div class="row">
         @foreach (var genre in Model.Genres)
         {
-        <div class="col-md-3 mb-4">
-            <a asp-controller="Genre" asp-action="SongsByGenre" asp-route-id="@genre.Id" class="text-decoration-none">
-                <div class="genre-card">
-                    <div class="genre-details">
-                        <h5>@genre.Name</h5>
+            <div class="col-md-3 mb-4">
+                <a asp-controller="Genre" asp-action="SongsByGenre" asp-route-id="@genre.Id" class="text-decoration-none">
+                    <div class="genre-card">
+                        <div class="genre-details">
+                            <h5>@genre.Name</h5>
+                        </div>
                     </div>
-                </div>
-            </a>
-        </div>
+                </a>
+            </div>
         }
     </div>
 </div>

@@ -10,7 +10,7 @@
     <div class="form-container">
         <h2 class="text-center">Login</h2>
         <form method="post" asp-controller="Account" asp-action="Login">
-            <p class="text-danger">@ViewData.ModelState[""]?.Errors.FirstOrDefault()?.ErrorMessage</p>
+            <p class="text-danger">@ViewData.ModelState["Login"]?.Errors.FirstOrDefault()?.ErrorMessage</p>
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="Email" class="form-control" required/>

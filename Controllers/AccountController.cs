@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using MPAJukebox.Data;
 using MPAJukebox.Extensions;
@@ -69,7 +68,7 @@ public class AccountController : Controller
             }
             return RedirectToAction("Index", "Home");
         }
-        ModelState.AddModelError("", "Invalid email or password");
+        ModelState.AddModelError("Login", "Invalid email or password");
         return View();
     }
 
