@@ -6,6 +6,7 @@ public class Genre
 {
     [Key]
     public int Id { get; set; }
-    public string Name { get; set; }
-    public ICollection<Song> Songs { get; set; }
+    [MaxLength(255)]
+    public required string Name { get; set; }
+    public List<Song> Songs { get; set; } = [];
 }

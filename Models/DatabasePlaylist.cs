@@ -7,7 +7,8 @@ public class DatabasePlaylist
 {
     [Key]
     public int Id { get; set; }
-    public string Name { get; set; }
+    [MaxLength(255)]
+    public required string Name { get; set; }
     
     public int UserId { get; set; }
     public List<Song> Songs { get; set; } = [];

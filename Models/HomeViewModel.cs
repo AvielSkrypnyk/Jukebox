@@ -2,6 +2,6 @@ namespace MPAJukebox.Models;
 
 public class HomeViewModel
 {
-    public List<Genre> Genres { get; set; }
-    public List<Song> Songs { get; set; }
+    public required List<Genre> Genres { get; set; }
+    public required List<Song> Songs { get; set; }
 }

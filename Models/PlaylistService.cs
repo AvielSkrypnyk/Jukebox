@@ -6,45 +6,45 @@ namespace MPAJukebox.Models;
 
 public class PlaylistService
 {
-    private readonly ISession _session;
+    private readonly IHttpContextAccessor _contextAccessor;
     private readonly ApplicationDbContext _context;
     private const string PlaylistKey = "Playlist";
     
-    public PlaylistService(ISession session, ApplicationDbContext context)
+    public PlaylistService(IHttpContextAccessor contextAccessor, ApplicationDbContext context)
     {
-        _session = session;
+        _contextAccessor = contextAccessor;
         _context = context;
     }
 
     public SessionPlaylist GetPlaylist()
     {
-        return _session.GetObjectFromJson<SessionPlaylist>(PlaylistKey) ?? new SessionPlaylist();
+        return _contextAccessor.HttpContext!.Session.GetObjectFromJson<SessionPlaylist>(PlaylistKey) ?? new SessionPlaylist();
     }
     
     public void AddSongToPlayList(Song song)
     {
         var playlist = GetPlaylist();
         playlist.Songs.Add(song);
-        _session.SetObjectAsJson(PlaylistKey, playlist);
+        _contextAccessor.HttpContext!.Session.SetObjectAsJson(PlaylistKey, playlist);
     }
     
     public void RemoveSongFromPlayList(int id)
     {
         var playlist = GetPlaylist();
         playlist.Songs.RemoveAll(s => s.Id == id);
-        _session.SetObjectAsJson(PlaylistKey, playlist);
+        _contextAccessor.HttpContext!.Session.SetObjectAsJson(PlaylistKey, playlist);
     }
     
     public void ClearPlaylist()
     {
-        _session.Remove(PlaylistKey);
+        _contextAccessor.HttpContext!.Session.Remove(PlaylistKey);
     }
 
     public void RenamePlaylist(string newName)
     {
         var playlist = GetPlaylist();
         playlist.Name = newName;
-        _session.SetObjectAsJson(PlaylistKey, playlist);
+        _contextAccessor.HttpContext!.Session.SetObjectAsJson(PlaylistKey, playlist);
     }
     
     public void SavePlaylistToDatabase(int userId)
@@ -60,7 +60,8 @@ public class PlaylistService
                 existingPlaylist.Name = sessionPlaylist.Name ?? "Untitled Playlist";
                 existingPlaylist.Songs = sessionPlaylist.Songs
                     .Select(dto => _context.Songs.Find(dto.Id))
-                    .Where(song => song != null).ToList();
+                    .Where(song => song != null)
+                    .Select(song => song!).ToList(); // Ensure no nulls in the list, when in session playlist song is null and in database song is not null
                 _context.Playlists.Update(existingPlaylist);
             }
             else
@@ -73,6 +74,7 @@ public class PlaylistService
                     Songs = sessionPlaylist.Songs
                         .Select(dto => _context.Songs.Find(dto.Id))
                         .Where(song => song != null)
+                        .Select(song => song!)
                         .ToList()
                 };
                 _context.Playlists.Add(playlist);

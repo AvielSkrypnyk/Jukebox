@@ -13,7 +13,7 @@ public class PlaylistController : Controller
     public PlaylistController(IHttpContextAccessor httpContextAccessor, ApplicationDbContext context)
     {
         _context = context;
-        _playlistService = new PlaylistService(httpContextAccessor.HttpContext.Session, context);
+        _playlistService = new PlaylistService(httpContextAccessor, context);
     }
     
     public IActionResult Index()

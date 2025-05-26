@@ -14,7 +14,7 @@ public class SongController : Controller
     public SongController(ApplicationDbContext context, IHttpContextAccessor httpContextAccessor)
     {
         _context = context;
-        _playlistService = new PlaylistService(httpContextAccessor.HttpContext.Session, context);
+        _playlistService = new PlaylistService(httpContextAccessor, context);
     }
 
     

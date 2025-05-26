@@ -1,5 +1,4 @@
 @model MPAJukebox.Models.SessionPlaylist
-@inject IHttpContextAccessor HttpContextAccessor
 
 @{
     var playlistName = "Playlist";
@@ -98,7 +97,7 @@ else
             </div>
         </form>
     </div>
-    @if (HttpContextAccessor.HttpContext.Session.GetInt32("UserId") != null)
+    @if (Context.Session.GetInt32("UserId") != null)
     {
         <div class="container mt-4">
             <form method="post" asp-controller="Playlist" asp-action="SavePlaylist">

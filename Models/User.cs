@@ -8,7 +8,10 @@ public class User
 {
     [Key]
     public int Id { get; set; }
-    public string Username { get; set; }
-    public string Email { get; set; }
-    public string Password { get; set; }
+    [MaxLength(255)] // Just a random length, can be adjusted
+    public required string Username { get; set; }
+    [MaxLength(255)]
+    public required string Email { get; set; }
+    [MaxLength(255)]
+    public required string Password { get; set; }
 }  
